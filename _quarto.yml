@@ -8,7 +8,7 @@ project:
 website:
   title: "Technology-Enabled Evidence Synthesis"
   description: "A technology-enabled way of working for the 3ie Evidence Synthesis Office."
-  site-url: "https://REPLACE-with-your-pages-url"
+  site-url: "https://sempe.dev/eso-course"
   page-navigation: true
   reader-mode: true
   navbar:
