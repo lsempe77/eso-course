@@ -1,0 +1,8 @@
+---
+title: "Tier 1"
+---
+
+::: {.callout-note}
+Lessons for Tier 1 are in development. Each will be built from
+`templates/module-template.qmd` following `CLAUDE.md` and `STYLE.md`.
+:::

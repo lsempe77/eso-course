@@ -1,0 +1,25 @@
+---
+title: "Technology-Enabled Evidence Synthesis"
+subtitle: "A modern way of working for the 3ie Evidence Synthesis Office"
+---
+
+Welcome. This handbook teaches a technology-enabled **way of working** on evidence
+synthesis — reproducible, version-controlled, collaborative, and transparent — using
+git/GitHub, Quarto, VS Code, and Claude Code, with responsible-AI guardrails (RAISE).
+
+It is a **workflow** course, not a methods course: you already know how to search,
+screen, extract, appraise, and synthesise. We teach how to do all of it better with
+modern tools.
+
+## How the programme is organised
+
+- **Tier 0 — Orientation & setup:** get your machine ready; nobody stuck on installs.
+- **Tier 1 — Foundations:** the engine — project structure, git/GitHub, Quarto, working with LLMs, governance.
+- **Tier 2 — Synthesis lifecycle:** apply the stack across scoping, search, screening, extraction, appraisal, reporting, publishing, living updates, and citation integrity.
+- **Tier 3 — Advanced / mastery:** environment reproducibility, pipelines, skill authoring, team standards, peer review.
+
+See `planning/eso-course-design-plan.qmd` for the full design rationale.
+
+::: {.callout-note}
+Access to this site is restricted to 3ie staff. If you can read this, you're in the right place.
+:::

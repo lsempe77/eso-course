@@ -1,0 +1,316 @@
+---
+title: "Technology-Enabled Evidence Synthesis"
+subtitle: "Design plan for a self-paced + cohort programme — 3ie Evidence Synthesis Office"
+author: "Prepared for the ESO team"
+date: today
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    toc-location: left
+    number-sections: true
+    embed-resources: true
+    code-copy: true
+    code-overflow: wrap
+    fig-cap-location: top
+title-block-banner: "#16508a"
+title-block-banner-color: white
+---
+
+::: {.callout-note appearance="simple"}
+**What this document is.** A design plan for a programme that teaches our team a modern, technology-enabled *way of working* on evidence synthesis. It is a **workflow** course, not a methods course — it does not teach how to search, screen, extract, appraise, or meta-analyse. You already know that. It teaches how to do all of it reproducibly, collaboratively, transparently, and faster, using current tools.
+:::
+
+# The problem we're solving
+
+Most evidence-synthesis work today still lives in emailed Word and Excel files: `screening_v17_FINAL_really_final.xlsx`, protocols whose history nobody can reconstruct, analyses that can't be re-run, and results whose provenance is a folder of mystery files. When a reviewer leaves, knowledge leaves with them. When a journal or funder asks "how exactly did you get this number," the honest answer is often "we'd have to rebuild it."
+
+This is not a skills problem — our methods are strong. It is a **workflow** problem. The same review, done on a modern reproducible stack, becomes version-controlled, auditable, collaborative without file-emailing, and updatable without starting over. That is what this programme builds.
+
+The timing matters. In 2025 the major evidence-synthesis bodies — Cochrane, the **Campbell Collaboration** (our closest sibling), JBI, and the Collaboration for Environmental Evidence — issued a joint position statement and the **RAISE** recommendations on responsible AI use in synthesis. The field now has a shared rulebook for doing this well. We should teach to it.
+
+# Who this is for
+
+| Dimension | Where the team is today |
+|---|---|
+| Coding background | Mostly non-coders; comfortable in Word, Excel, and review platforms; some R exposure |
+| Analytic skill | Strong — experienced synthesis methodologists and reviewers |
+| Tooling gap | git/GitHub, reproducible documents, an editor/IDE, and structured LLM use are not yet part of daily work |
+| Constraints | Full admin rights on machines (can install anything); published-paper data, so external LLMs are acceptable for that content |
+
+The design principle that follows from this: **every tool is taught through a synthesis task the learner already recognises**, never as abstract software. People learn version control by tracking a screening log, not by learning git in the abstract. A second standing principle: **reuse before building** — we search GitHub and the web for existing lessons, datasets, and skills to adapt and credit before writing our own (see `CLAUDE.md`).
+
+# What "state of the art" actually looks like
+
+A common question is whether leading research teams really standardise on "GitHub + an AI agent + a modern editor," or whether there's something else. The honest answer from current practice: that trio is the **core engine**, and a complete evidence-synthesis workflow wraps two more layers around it. We teach all three layers.
+
+## The reference architecture
+
+::: {.callout-tip appearance="simple"}
+**The mental model the whole programme is organised around.** An *engine* in the middle, a *synthesis-specific wrapper* around it, and *optional reproducibility plumbing* underneath for teams that want to go deeper.
+:::
+
+| Layer | Components | Role in our workflow |
+|---|---|---|
+| **Engine** (core, everyone) | Git/GitHub, Quarto, an AI agent (Claude Code), an editor (VS Code) | Version control, reproducible documents, AI assistance, and the home base where the work happens |
+| **Synthesis wrapper** (synthesis-specific) | OSF / PROSPERO; a review platform (Covidence, EPPI-Reviewer, Rayyan, ASReview) | Protocol registration & archiving; collaborative screening & extraction |
+| **Plumbing** (optional, advanced) | renv, targets / Make, Docker | Lock package versions; automate re-runs; freeze the whole environment |
+
+The strategic point we want every learner to internalise: **state of the art is not "throw out Covidence and do everything in code."** It is a *hybrid* — keep the specialised platforms where they shine, register and archive on OSF/PROSPERO, and use git + Quarto + the agent as the reproducible connective tissue that imports the exports, logs every decision, and produces a transparent, re-runnable report. That integration is what separates a modern team from one drowning in spreadsheets.
+
+## Why these specific tools
+
+**Editor — VS Code.** We standardise on VS Code. It is the most widely used editor, has the broadest extension ecosystem, and — decisively — supports the *official* GitHub Copilot extension and other integrations that VS Code forks (like Positron) cannot legally bundle. Claude Code, our central agent, runs directly in its integrated terminal and auto-connects to the editor (it sees the open file and shows diffs). R and Quarto work through official extensions (the R extension and the Quarto extension), which we configure once in a setup pack so non-coders are never left assembling an environment by hand. RStudio and Positron remain reasonable alternatives — RStudio for a pure-R, batteries-included feel; Positron for a data-science-first VS Code variant — but VS Code gives us the most universal and best-supported base, and the cleanest path to official Copilot.
+
+**AI agent — Claude Code.** Released May 2025, it became the most-used and most-loved AI coding tool within a year. The market has settled into three players — Claude Code (agentic work), Cursor (full IDE + agent), Copilot (enterprise inline). Claude Code runs directly in VS Code's integrated terminal and auto-connects to the editor, so it is both powerful and present where the work happens.
+
+**Where the LLM "sits" — it's a spectrum, not one place.** The durable meta-skill is knowing which surface to reach for:
+
+1. **Chat advisor** (Claude/ChatGPT in a browser) — explains, debugs, drafts. Zero setup, safest mental model, but can't see your files. Best for *learning and unblocking*.
+2. **In-editor assistant** (GitHub Copilot in VS Code) — sees your open file, suggests inline and edits by instruction. Best for *working as you go*.
+3. **Agent** (Claude Code) — reads/writes files, runs code, does git, multi-step. Most powerful; it *does the work for you*.
+
+We sequence these deliberately: start at chat, graduate to the in-editor assistant, and use the agent throughout — always under the rule that **you must be able to read and verify everything it produces**, or it quietly destroys reproducibility.
+
+# The guiding philosophy: agent-central, reproducibility as guardrail
+
+The team wants the AI agent central from early on. That is the right ambition, but for people newer to these tools it carries a real risk: silent dependency and broken provenance. So the programme's spine is not "learn tools, then add an agent." It is:
+
+> **Work with an agent from day one — and learn to version, read, and verify everything it does.**
+
+This is exactly the RAISE principle, made operational: the synthesist is *always* ultimately responsible; AI is acceptable only when it doesn't compromise rigour; human oversight is required; and any AI-made or AI-suggested judgement is transparently reported. In our programme, **git makes every step recoverable, and Quarto makes every result re-runnable** — together they are the guardrails that make heavy agent use safe and auditable. That is why version control and "always render from source" come *early*, before deep agent work, not after.
+
+# How we know this model works: the DIME precedent
+
+We are not inventing this from scratch. The World Bank's Development Impact Evaluation unit (DIME) — directly comparable to our work — built almost exactly this kind of programme and documented it publicly (the DIME Analytics Data Handbook and DIME Wiki). The lessons we are borrowing:
+
+- **It's not just self-paced modules.** Adoption stuck because they paired training with (a) **migrating real, live projects** onto the workflow and (b) recurring **peer code review**.
+- **Bootcamps over lectures.** Hands-on sessions that transition actual work, not slides about best practice.
+- **Standards as a living artefact.** A team standards repository that the programme itself produces.
+
+Our programme adopts all three: a real-project practicum, peer review cycles, and a team-standards deliverable.
+
+# Featured workstream: citation & reference integrity
+
+One capability deserves to be called out on its own, because it is where the LLM era is most dangerous *and* where a good workflow pays off most visibly: **making sure every citation in our work is real, correctly attributed, not retracted, and actually supports the claim it's attached to.** LLM-assisted drafting and extraction can introduce fabricated references, reversed findings, and wrong statistics — exactly the failures that erode trust in synthesis. We teach a defensible, two-layer approach.
+
+## Two layers: deterministic checks + semantic verification
+
+::: {.callout-tip appearance="simple"}
+Deterministic tools answer *"does this reference exist and is it clean?"* The agent answers *"does the source actually say what we claim?"* You need both.
+:::
+
+**Layer 1 — deterministic checks (R, reproducible, no judgement calls).**
+
+- **`metacheck`** (ScienceVerse) — a modular reference-integrity checker: `ref_accuracy` flags references that don't match CrossRef metadata, `ref_doi_check` catches missing or malformed DOIs, and further modules cross-check citations against the **RetractionWatch** database and **PubPeer** comments. This catches fabricated and retracted references mechanically.
+- **`CiteSource`** (Evidence Synthesis Hackathon) — source-level analysis and *metadata-preserving* deduplication: it tracks which database, search string, or review stage each record came from, so search contributions and the PRISMA source counts are transparent and reproducible. (This is search/source *integrity* — complementary to citation integrity.)
+
+**Layer 2 — semantic verification (agent + skill, human-accountable).** Deterministic tools can't tell whether a real, correctly-formatted source *actually supports the claim*. That requires reading the source against the claim — an agent task, done under strict guardrails.
+
+The strongest demonstration of this comes from a citation-verification **skill built for Claude Cowork** (the same environment this programme uses) and benchmarked against general chatbots. On a 35-citation report seeded with 11 errors (fabricated statistics, reversed findings, a made-up study):
+
+| Setup | Errors caught | Fabricated evidence |
+|---|---|---|
+| **Cowork + citation skill** | **10 / 11 (91%)** | 0 |
+| ChatGPT (careful prompt) | 5 / 11 (45%) | **3 fabricated quotes** |
+| Claude chat, no skill (simple prompt) | 3 / 11 (27%) | 0 |
+| ChatGPT (simple prompt) | 1 / 11 (9%) | 0 |
+| Perplexity | refused / 0 | 0 |
+
+Three lessons we build the curriculum around:
+
+1. **A structured skill beats ad-hoc prompting, by a lot** — the *same* model went from 27% to 91% with a proper skill and agentic workflow. Investing in reusable skills is worth it.
+2. **A "second pair of eyes" matters** — the winning setup used two agents: one verifies each citation, a second independently re-reviews the first's verdicts and catches misses. This is the RAISE "human oversight" principle, operationalised.
+3. **A more demanding prompt can *increase* hallucination** — asking a chatbot for exact quotes pressured it to invent quotes when it couldn't reach the source. The discipline that matters is *flagging inaccessible sources rather than fabricating evidence*. Our skill uses an explicit verdict taxonomy — `SUPPORTED`, `PARTIAL`, `UNSUPPORTED`, `INACCESSIBLE`, `HALLUCINATED SOURCE` — and never guesses.
+
+## What we'll teach and build
+
+- A **module** (Tier 2.9) that runs every citation in the threaded example through both layers: `metacheck`/`CiteSource` for deterministic integrity, then an agent skill for semantic verification, with all verdicts logged for the audit trail.
+- A **reusable Cowork citation-verification skill**, tailored to 3ie's synthesis outputs, as a programme deliverable. We will start from existing open skills — Nate Miller's downloadable citation-verification skill and the research/citation skills in community libraries such as `alirezarezvani/claude-skills` — and adapt rather than build from scratch.
+- A **Tier 3.3** advanced track on *authoring and maintaining* such skills, so the team can build verification playbooks for its own recurring tasks.
+
+# The threaded example
+
+One real, 3ie-style evidence product runs through the entire programme so skills compound instead of feeling like a disconnected tool tour. Given our work, the natural spine is a small **evidence gap map (EGM) or systematic review slice** — the kind of "transparent and reproducible scientific process" 3ie already describes for its EGMs. Every module advances the same project: by the end, learners have taken it from scoping through a published, version-controlled, reproducible output. (Exact topic to be chosen with the team — see open decisions.)
+
+# Programme structure
+
+The programme is **tiered and scaffolded**, roughly **210 hours of core curriculum** (Tiers 0–3) with an extensible **practicum** that scales the total to ~400 hours through deeper real-project work, mentoring, and electives. It is designed as a **hybrid**: self-paced modules for concepts and mechanics, plus cohort sessions for the things that need a group (peer review, real-project migration, troubleshooting).
+
+## Tier overview
+
+| Tier | Focus | Approx. hours |
+|---|---|---|
+| **0** | Orientation & setup | 10 |
+| **1** | Foundations — the engine | 60 |
+| **2** | Applying it across the synthesis lifecycle (incl. citation integrity) | 90 |
+| **3** | Advanced / mastery & reproducibility deepening | 50 |
+| **Practicum** | Real-project migration, capstone, peer review | 40 → 200 (scalable) |
+| | **Core total (Tiers 0–3)** | **~210** |
+| | **Full programme with extended practicum** | **~300–400** |
+
+## Tier 0 — Orientation & setup (~10 h)
+
+The goal is that nobody is ever blocked on environment problems later.
+
+- **Why technology-enabled synthesis** — the reproducibility problem, the finished picture, a tour of the threaded example's end state.
+- **Install and accounts** — VS Code (with the R and Quarto extensions), R, git; GitHub, OSF, and LLM/Copilot accounts. Delivered via a one-click setup pack and a short video.
+- **Terminal survival kit** — the minimum: paths, `cd`, `ls`. Nothing more than needed.
+- **First contact** — say hello to the agent, make a first commit, render a first document. Prove the whole loop works on day one.
+
+## Tier 1 — Foundations: the engine (~60 h)
+
+The cross-cutting way of working that underpins every later stage.
+
+| Module | What it covers | Hrs |
+|---|---|---|
+| 1.1 Project & file organisation | A sane, portable folder structure for a review; no more personal-directory chaos | 8 |
+| 1.2 Version control with git/GitHub | Commit, branch, push, pull request — taught through a real screening log and protocol. The hardest module for non-coders, so it gets the most time and starts with VS Code's built-in Source Control GUI before the terminal | 16 |
+| 1.3 Reproducible documents with Quarto | Markdown, `.qmd`, code + prose + citations in one source, rendering to Word/HTML/PDF, why this beats tracked-changes Word | 14 |
+| 1.4 Working with LLMs | The three surfaces, prompting fundamentals, verification discipline, the agent as a tutor that de-risks every later module | 12 |
+| 1.5 Responsible AI & governance | RAISE, the Cochrane/Campbell/JBI/CEE position statement, the published-data decision rule, documenting AI use | 6 |
+| 1.6 Collaboration workflows | Branches, pull requests, issues, reviewing a colleague's change without emailing files | 4 |
+
+## Tier 2 — Applying it across the synthesis lifecycle (~90 h)
+
+We walk the actual stages of a review. Each module answers: *"You already do this — here's how to do it better with the stack."*
+
+| Module | Stage | Tech in service of the task | Hrs |
+|---|---|---|---|
+| 2.1 | Scoping & protocol | Versioned, collaborative protocol; registration on OSF/PROSPERO | 10 |
+| 2.2 | Searching | Transparent search logging; LLM-assisted drafting/translation of search strings; `litsearchr` | 10 |
+| 2.3 | Screening (title/abstract & full text) | Review platform + LLM-assisted screening with human oversight and a full audit trail | 14 |
+| 2.4 | Data extraction & coding | Structured extraction, LLM-assisted, with provenance for every field | 14 |
+| 2.5 | Quality / risk-of-bias appraisal | Consistent, transparent recording of appraisal decisions | 8 |
+| 2.6 | Synthesis assembly & reporting | One-source-of-truth Quarto report; auto-generated PRISMA flow via the `PRISMA2020` package | 12 |
+| 2.7 | Publishing & dissemination | GitHub Pages, interactive EGM-style outputs, open-synthesis transparency | 8 |
+| 2.8 | Living reviews & updating | Updating without starting over; the workflow that makes living reviews feasible | 4 |
+| 2.9 | **Citation & reference integrity** | Deterministic checks (`metacheck`, `CiteSource`) + an agent-based semantic verification skill; every verdict logged. See the featured workstream above | 10 |
+
+::: {.callout-important appearance="simple"}
+**Note on the LLM stages (2.3–2.5).** These are scoped to where the evidence actually supports LLM use. A 2025–26 review of 63 studies found LLMs are used mainly for title/abstract screening, then data extraction, then full-text screening, then risk-of-bias — "promising but cautious." We teach them in that order of maturity, with realistic expectations and mandatory human verification, exactly as RAISE requires.
+:::
+
+## Tier 3 — Advanced / mastery & reproducibility deepening (~50 h)
+
+For those going further, and for the people who will set team standards.
+
+| Module | What it covers | Hrs |
+|---|---|---|
+| 3.1 Environment reproducibility | `renv` to lock package versions; a gentle intro to Docker | 10 |
+| 3.2 Pipeline automation | `targets` / Make — re-run the whole workflow automatically when inputs change | 10 |
+| 3.3 Advanced agent workflows & skill authoring | Multi-step automation, reusable prompts/conventions, agent guardrails at scale, and **authoring/maintaining verification skills** (e.g. the citation-verification skill) | 12 |
+| 3.4 Building team templates & standards | Produce our own DIME-style standards and template repository | 10 |
+| 3.5 Peer code review practice | Facilitated review of real work-in-progress — the habit that sustains quality | 8 |
+
+## Practicum — real-project migration & capstone (~40 h, scalable to ~200 h)
+
+This is where the programme earns its keep, and where the 200 → 400 hour expansion lives.
+
+- **Real-project migration.** Each participant brings a live review and migrates it onto the workflow with support — the DIME move that makes adoption real.
+- **Capstone.** Take the threaded example (or one's own project) end-to-end: scoping → registered protocol → logged search → audited screening → extraction with provenance → Quarto report with auto PRISMA → published to GitHub.
+- **Peer review cycles.** Structured rounds where participants review each other's repositories.
+- **Electives / depth (the path to 400 h).** Additional projects, mentoring others through the programme, deeper automation, contributing to team standards, building reusable templates for specific review types.
+
+# Deliverables we will build
+
+The final product is a **suite, not a single artefact** (see `CLAUDE.md` §1). The handbook is the source of truth; slides, notebooks, and videos derive from it.
+
+| Deliverable | Purpose |
+|---|---|
+| **Handbook** (Quarto book/website) | The written spine of the course — lessons, runnable code, exercises. Rendered from the repo; doubles as a live worked example of the stack |
+| **Slides** | Decks for live or cohort delivery, derived from the handbook |
+| **Practice notebooks** (`.qmd`) | Runnable files the learner works through and commits |
+| **Videos** (screencasts) | 4–8 min clips for what text handles poorly — installs, editor click-throughs, git flows |
+| **GitHub template repo** | Learners clone it and work through branches and checkpoints, with solutions |
+| **Templates & datasets** | Reusable lesson/template files and the threaded-example data |
+| **Team standards repo** | The living standards artefact the programme produces (Tier 3.4) |
+| **Citation-verification Cowork skill** | A reusable, 3ie-tailored skill that checks references for existence, retraction, and claim support — adapted from open community skills |
+
+Building the course *in the stack it teaches* is deliberate: the programme is its own best example.
+
+# Assessment & progression
+
+Lightweight but real, modelled on competence rather than quizzes:
+
+- **Checkpoints** at the end of each module — a concrete artefact committed to the learner's repo.
+- **Peer review** as the primary feedback mechanism (Tier 3.5 and the practicum).
+- **Capstone** as the integrative assessment.
+- **Optional levels/badges** — e.g., *Foundations* (Tiers 0–1), *Practitioner* (Tier 2), *Lead* (Tier 3 + practicum) — to give the team visible milestones and to identify internal champions.
+
+# How we'll build it (development sequence)
+
+1. **Finalise this plan** and confirm the open decisions below.
+2. **Scaffold the template repo + Quarto site skeleton** — the backbone everything renders from.
+3. **Build the threaded example** dataset/project so modules have a shared spine.
+4. **Draft modules in order** (Tier 0 → 3) — for each, *search first* for reusable material to adapt and credit, then write runnable, checkpointed content.
+5. **Pilot with a small cohort**, gather feedback, iterate.
+6. **Produce slides, notebooks, and videos** from the finished, stable handbook material.
+
+# Risks & mitigations
+
+| Risk | Mitigation |
+|---|---|
+| Non-coders bounce off git/terminal | Heavy scaffolding; GUI-first via VS Code's Source Control; git introduced through a familiar synthesis artefact; the agent as an always-available tutor |
+| Agent dependency erodes reproducibility | Version control and "render from source" taught *before* deep agent work; verify-everything rule; RAISE-aligned documentation of all AI use |
+| 200–400 h feels overwhelming | Tiered structure with clear milestones; only Tiers 0–1 are truly required to change daily work; later tiers are opt-in depth |
+| Adoption fades after training | DIME model — real-project migration + peer review + living standards, not one-off lectures |
+| VS Code needs setup for R/Quarto | A one-click setup/extensions pack and a setup video; RStudio offered as a fallback for anyone who prefers it |
+| Tooling changes fast | Teach the *layered model* and the meta-skills, not just today's button locations; keep the repo updatable |
+
+# Open decisions for the team
+
+1. **Threaded example topic** — which real EGM/SR slice should run through the programme? (You indicated a real 3ie-style topic; we need to pick one and point to source material.)
+2. **Cohort vs. fully self-paced** — the DIME evidence favours a cohort for the practicum; do we run cohorts, pure self-paced, or hybrid (recommended)?
+3. **Editor & agent stack** — confirmed as **VS Code + Claude Code + GitHub Copilot**, with RStudio as a fallback. Remaining check: that the team's Copilot access is a standard GitHub Copilot subscription.
+4. **Review platform** — which platform is our team standard to integrate against (Covidence, EPPI-Reviewer, Rayyan, ASReview)?
+5. **Scope target** — lock the ~210 h core first and treat the practicum as the expansion to ~400 h, or design the full 400 h up front?
+
+::: {.callout-note appearance="simple"}
+**Next step.** On your go-ahead, the development team scaffolds the template repo and Quarto site, builds the threaded example, and begins drafting Tier 0–1 modules.
+:::
+
+# Sources & references
+
+**Reproducible-research stack and pedagogy**
+
+- The Turing Way — reproducible research (renv, containers): <https://book.the-turing-way.org/reproducible-research/renv/renv-containers/>
+- targets — reproducible pipelines workshop (Carpentries): <https://carpentries-incubator.github.io/targets-workshop/quarto.html>
+- Carpentries — Reproducible Publications with Quarto: <https://github.com/carpentries-incubator/reproducible-publications-quarto>
+- Reproducible article template (Quarto + renv + Docker + GitHub): <https://github.com/phdpablo/article-template>
+- CRAN Task View: Reproducible Research: <https://cran.r-project.org/view=ReproducibleResearch>
+
+**AI tooling landscape (2026)**
+
+- Pragmatic Engineer — AI Tooling for Software Engineers in 2026: <https://newsletter.pragmaticengineer.com/p/ai-tooling-2026>
+- Claude Code vs Copilot vs Cursor (2026 comparison): <https://www.cosmicjs.com/blog/claude-code-vs-github-copilot-vs-cursor-which-ai-coding-agent-should-you-use-2026>
+- Best AI coding agents 2026 — rankings & adoption: <https://www.morphllm.com/best-ai-coding-agents-2026>
+- VS Code + Quarto extension: <https://quarto.org/docs/tools/vscode.html>
+- Claude Code in the editor (IDE integration): <https://docs.claude.com/en/docs/claude-code/ide-integrations>
+
+**Evidence-synthesis governance & AI evidence**
+
+- Position statement on AI use in evidence synthesis — Cochrane, Campbell, JBI, CEE (2025): <https://pmc.ncbi.nlm.nih.gov/articles/PMC12603384/>
+- RAISE — responsible AI in evidence synthesis (Cochrane): <https://www.cochrane.org/events/recommendations-and-guidance-responsible-ai-evidence-synthesis>
+- LLMs for systematic review tasks — review of 63 studies (2026): <https://www.sciencedirect.com/science/article/pii/S089543562600096X>
+- Harnessing LLMs for data extraction: prompt engineering (Cochrane ESM, 2025): <https://onlinelibrary.wiley.com/doi/10.1002/cesm.70058>
+- AI tools for automating evidence synthesis — scoping review (JMIR, 2026): <https://www.jmir.org/2026/1/e81597>
+
+**Comparable programmes and synthesis tooling**
+
+- World Bank DIME — reproducible research standards (HDSR, 2024): <https://hdsr.mitpress.mit.edu/pub/jn90uuur>
+- DIME Analytics Data Handbook — publishing reproducible research: <https://worldbank.github.io/dime-data-handbook/publication.html>
+- DIME standards (GitHub): <https://github.com/worldbank/dime-standards>
+- PRISMA2020 R package & Shiny app: <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8958186/>
+- OSF — Center for Open Science: <https://www.cos.io/products/osf>
+- Digital tools to support the systematic review process: <https://www.ncbi.nlm.nih.gov/pmc/articles/PMC12035789/>
+- 3ie — Evidence Gap Maps: <https://www.3ieimpact.org/evidence-hub/evidence-gap-maps>
+
+**Citation & reference integrity**
+
+- CiteSource — R package for source analysis & metadata-preserving dedup (Research Synthesis Methods): <https://www.cambridge.org/core/journals/research-synthesis-methods/article/citesource-an-r-package-for-datadriven-search-strategy-development-and-enhanced-evidence-synthesis-reporting/970CD7CA99701F3AE5E06AF52241148E>
+- CiteSource docs / GitHub: <https://www.eshackathon.org/CiteSource/> · <https://github.com/ESHackathon/CiteSource>
+- metacheck — checking research outputs (ref_accuracy, DOI checks, RetractionWatch, PubPeer): <https://www.scienceverse.org/metacheck/>
+- Nate Miller — "I built a citation fact-checker" (Cowork skill benchmark): <https://nate-miller.beehiiv.com/p/i-built-a-citation-fact-checker-here-s-how-it-compared-to-chatgpt-perplexity-and-claude>
+- alirezarezvani/claude-skills — community skill library (research/citation skills): <https://github.com/alirezarezvani/claude-skills>

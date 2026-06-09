@@ -1,0 +1,56 @@
+project:
+  type: website
+  output-dir: _site
+  render:
+    - index.qmd
+    - tiers/**/*.qmd
+
+website:
+  title: "Technology-Enabled Evidence Synthesis"
+  description: "A technology-enabled way of working for the 3ie Evidence Synthesis Office."
+  site-url: "https://REPLACE-with-your-pages-url"
+  page-navigation: true
+  reader-mode: true
+  navbar:
+    background: "#16508a"
+    search: true
+    left:
+      - href: index.qmd
+        text: Home
+      - href: tiers/tier0/index.qmd
+        text: Tier 0
+      - href: tiers/tier1/index.qmd
+        text: Tier 1
+      - href: tiers/tier2/index.qmd
+        text: Tier 2
+      - href: tiers/tier3/index.qmd
+        text: Tier 3
+  sidebar:
+    style: docked
+    collapse-level: 1
+    contents:
+      - text: "Home"
+        href: index.qmd
+      - section: "Tier 0 — Orientation & setup"
+        contents:
+          - tiers/tier0/index.qmd
+      - section: "Tier 1 — Foundations"
+        contents:
+          - tiers/tier1/index.qmd
+      - section: "Tier 2 — Synthesis lifecycle"
+        contents:
+          - tiers/tier2/index.qmd
+      - section: "Tier 3 — Advanced"
+        contents:
+          - tiers/tier3/index.qmd
+  page-footer:
+    left: "3ie Evidence Synthesis Office"
+    right: "Built with Quarto · access restricted to 3ie"
+
+format:
+  html:
+    theme: cosmo
+    toc: true
+    toc-depth: 3
+    code-copy: true
+    code-overflow: wrap

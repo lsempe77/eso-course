@@ -1,0 +1,98 @@
+---
+title: "MODULE TITLE"          # sentence case, e.g. "Tracking your screening log with git"
+description: "One sentence on what the learner will be able to do."
+# --- authoring metadata (keep updated) ---
+tier: 1                          # 0, 1, 2, or 3
+module: "1.2"                    # e.g. "1.2"
+estimated_time: "90 min"
+stack: ["git", "VS Code"]        # tools used in this lesson
+synthesis_task: "Versioning a screening log"   # the recognisable task this is anchored to
+status: "draft"                  # draft | review | done
+format: html
+---
+
+<!--
+AUTHORING NOTES — delete before publishing.
+- Read CLAUDE.md and STYLE.md before writing.
+- Every section below is required. Do NOT remove the "Verify" section.
+- Anchor everything to the `synthesis_task` above. No abstract tool tours.
+- Keep all code runnable. UK/International English. Plain, warm, practitioner tone.
+-->
+
+## What you'll be able to do {#outcomes}
+
+By the end of this lesson you will be able to:
+
+- Outcome 1 (an action, e.g. "commit a change to your screening log").
+- Outcome 2.
+- Outcome 3.
+
+::: {.callout-note appearance="simple"}
+**Time:** ~XX min · **You'll produce:** *(the concrete artefact the learner commits, e.g. "a versioned `screening-log.csv` with two commits").*
+:::
+
+## Why this matters {#why}
+
+Two or three sentences connecting this skill to a real synthesis task the reader already does. Name the pain it removes (e.g. "no more `screening_v7_FINAL.xlsx` by email"). Keep it concrete.
+
+## What you need {#prerequisites}
+
+- Prior module(s): *(link)*.
+- Installed/ready: *(e.g. VS Code, git, a GitHub account)*.
+- Files: *(e.g. the threaded-example repo cloned)*.
+
+## Walkthrough {#walkthrough}
+
+Teach the skill in numbered, imperative steps. Show success after each meaningful step.
+
+1. Do the first thing. You should see …
+2. Do the next thing.
+
+```bash
+# Runnable example — label the language, keep it copy-pasteable
+git status
+```
+
+::: {.callout-tip}
+A shortcut or good-practice note relevant to this step.
+:::
+
+### Working with the agent (if relevant)
+
+Show how to use Claude Code / Copilot for this task — **and** how to read and check what it produces. Never present agent output as trustworthy without checking it.
+
+## Try it yourself {#try}
+
+A short, specific exercise on the threaded example that produces the artefact named above. State exactly what "done" looks like.
+
+> **Your task:** …
+> **Done when:** …
+
+## Verify {#verify}
+
+*(Required — this is where the reproducibility / RAISE discipline lives.)*
+
+How the learner confirms their work is correct and reproducible. For example: re-render from source and check the output; run the deterministic check; have the agent's output independently reviewed; confirm the commit appears in the history. If AI was used, note how its output was verified and recorded.
+
+## Common pitfalls {#pitfalls}
+
+- Pitfall → how to recognise it → how to fix it.
+- Pitfall → fix.
+
+## Recap {#recap}
+
+Two or three sentences: what they can now do, and where it fits in the workflow.
+
+## What's next {#next}
+
+One line pointing to the next module and how it builds on this one.
+
+---
+
+::: {.callout-note collapse="true"}
+## Facilitator notes (cohort delivery)
+
+- Discussion prompts, common sticking points, timing for a live session.
+- Suggested peer-review pairing or check-in for this module.
+- Anything to prepare in advance.
+:::
