@@ -30,7 +30,7 @@ CLAUDE.md  STYLE.md         build + writing rules
 .github/workflows/publish.yml   CI: render and deploy to GitHub Pages
 ```
 
-## Publishing (GitHub Pages)
+## Publishing (Cloudflare Pages via GitHub Actions)
 
 Publishing is automated. On every push to `main`, the Actions workflow renders the
 site and deploys it to GitHub Pages.
@@ -45,25 +45,14 @@ One-time setup after creating the GitHub repo:
 
 ## Access control — 3ie staff only
 
-**Plain GitHub Pages is fully public.** To restrict the site to `@3ieimpact.org`,
-choose one of:
+The site is restricted to `@3ieimpact.org` using **Cloudflare Pages + Cloudflare Access**.
+The GitHub Action renders the Quarto site and deploys it to Cloudflare Pages; a
+Cloudflare Access policy then allows only verified `@3ieimpact.org` emails.
 
-### Option A — GitHub Enterprise Cloud "private Pages" (org members)
-If 3ie is on GitHub Enterprise Cloud: keep the repo **private/internal** and set the
-Pages visibility to **private** (Settings > Pages > Visibility). The site is then
-viewable only by org members with read access, enforced via 3ie's SSO (Microsoft
-Entra). This restricts by **org membership**, not literally by email domain.
-Org admins control allowed visibilities under Org Settings > Member privileges > Pages.
-
-### Option B — Cloudflare Access in front of the site (matches the email domain) — recommended
-Put **Cloudflare Access** (Zero Trust, free up to 50 users) in front of the site and
-add an **Allow policy: emails ending in `@3ieimpact.org`** (validated by one-time PIN
-or Microsoft/Google SSO). Two ways to host behind it:
-- Host on **Cloudflare Pages** (connect this GitHub repo in the Cloudflare dashboard;
-  build command `quarto render`, output `_site`), then add the Access policy; or
-- Keep **GitHub Pages** with a custom domain proxied through Cloudflare, then add the
-  Access policy to that hostname.
-
-This is the only option that enforces the literal "`@3ieimpact.org` only" rule.
+**Full step-by-step setup is in [`ACCESS.md`](ACCESS.md).** In short: create a
+Cloudflare Pages project `eso-course`, add `CLOUDFLARE_API_TOKEN` and
+`CLOUDFLARE_ACCOUNT_ID` as GitHub Actions secrets, push to `main`, then add a
+Cloudflare Access application with an Allow policy for *emails ending in*
+`@3ieimpact.org`.
 
 See `planning/eso-course-design-plan.qmd` for the full programme design.
