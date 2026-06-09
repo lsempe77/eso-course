@@ -1,58 +1,48 @@
 # Technology-Enabled Evidence Synthesis
 
-The course repository for the 3ie Evidence Synthesis Office programme. It is a Quarto
-website (the **handbook**) plus templates, planning docs, and a publishing workflow.
-Read `CLAUDE.md` before adding or editing content; `STYLE.md` governs writing.
+The course repository for the 3ie Evidence Synthesis Office programme. It contains the
+**handbook** (a Quarto website) plus the governing rules, the lesson template, and the
+design plan.
 
-## Working locally
+## How the course is delivered
 
-> **Important:** clone this repo to a folder that is **not** inside OneDrive/Dropbox.
-> Cloud-sync folders corrupt git internals and truncate files. Keep your working copy
-> on local disk (e.g. `C:\dev\eso-course`).
+- **Handbook (reading):** this Quarto site, published free via **GitHub Pages**. It is
+  public — built from public/published material — so you can link it anywhere.
+- **Coursework (exercises, submissions, grades):** delivered through **Google Classroom**
+  on 3ie's Google Workspace, so it is automatically restricted to `@3ieimpact.org`. Paste
+  the handbook URL into Classroom as a Material, and run exercises as Classroom
+  assignments. See `ACCESS.md`.
 
-```bash
-git clone <repo-url> eso-course
-cd eso-course
-quarto preview        # live local preview
-quarto render         # build the whole site into _site/
+## Where things live
+
+- **GitHub (source of truth):** `https://github.com/lsempe77/eso-course`
+- **Live handbook:** the GitHub Pages URL (repo **Settings → Pages**)
+- **Your local copy:** `…/Desktop/Gen AI tools/teaching/eso-course` (this folder)
+
+Treat GitHub as the master copy. If you edit locally, **Pull first** (GitHub Desktop →
+*Pull origin*), then *Commit* and *Push*.
+
+## Repository structure
+
+```
+_quarto.yml                     site config (menu, theme, what gets published)
+index.qmd                       handbook home page
+tiers/tier0..3/                 lessons by tier (built from the template)
+templates/module-template.qmd   the lesson skeleton — copy this to start a lesson
+planning/                       the design plan (not published to the site)
+assets/  data/                  images and the threaded-example data
+CLAUDE.md  STYLE.md             build + writing rules (read before authoring)
+.github/workflows/publish.yml   CI: renders the site and deploys to GitHub Pages
 ```
 
-## Structure
+## Editing and publishing
 
-```
-_quarto.yml                 site config (nav, theme, what gets rendered)
-index.qmd                   home page
-tiers/tier0..3/             lessons by tier (built from the template)
-templates/module-template.qmd   the lesson skeleton — copy this to start a module
-planning/                   design plan (not published to the site)
-assets/  data/              images and the threaded-example data
-CLAUDE.md  STYLE.md         build + writing rules
-.github/workflows/publish.yml   CI: render and deploy to GitHub Pages
-```
+1. Edit the `.qmd` files (`index.qmd`, `tiers/…`). Follow `CLAUDE.md` and `STYLE.md`.
+2. (Optional) Preview locally: `quarto preview`.
+3. Publish: push to `main`. The GitHub Action renders the site and deploys it to GitHub
+   Pages automatically. (One-time: repo **Settings → Pages → Source = GitHub Actions**.)
+4. After the first deploy, set `site-url:` in `_quarto.yml` to your live Pages URL.
 
-## Publishing (Cloudflare Pages via GitHub Actions)
-
-Publishing is automated. On every push to `main`, the Actions workflow renders the
-site and deploys it to GitHub Pages.
-
-One-time setup after creating the GitHub repo:
-
-1. Push this repo to GitHub.
-2. Repo **Settings > Pages > Build and deployment > Source = GitHub Actions**.
-3. Push to `main` (or run the workflow manually). The site URL appears in the
-   workflow's `deploy` step and in Settings > Pages.
-4. Update `site-url:` in `_quarto.yml` to the published URL.
-
-## Access control — 3ie staff only
-
-The site is restricted to `@3ieimpact.org` using **Cloudflare Pages + Cloudflare Access**.
-The GitHub Action renders the Quarto site and deploys it to Cloudflare Pages; a
-Cloudflare Access policy then allows only verified `@3ieimpact.org` emails.
-
-**Full step-by-step setup is in [`ACCESS.md`](ACCESS.md).** In short: create a
-Cloudflare Pages project `eso-course`, add `CLOUDFLARE_API_TOKEN` and
-`CLOUDFLARE_ACCOUNT_ID` as GitHub Actions secrets, push to `main`, then add a
-Cloudflare Access application with an Allow policy for *emails ending in*
-`@3ieimpact.org`.
-
-See `planning/eso-course-design-plan.qmd` for the full programme design.
+### No command line needed
+Use **GitHub Desktop** (*Pull origin → edit → Commit → Push*) or edit `.qmd` files
+directly on github.com. Either way the site rebuilds itself.

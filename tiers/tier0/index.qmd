@@ -1,8 +1,13 @@
 ---
-title: "Tier 0"
+title: "Tier 0 — Orientation & setup"
 ---
 
-::: {.callout-note}
-Lessons for Tier 0 are in development. Each will be built from
-`templates/module-template.qmd` following `CLAUDE.md` and `STYLE.md`.
-:::
+This first tier gets you set up and oriented so that nothing later trips you up. By the
+end of it your tools are installed, your accounts are ready, you've met the AI assistant
+you'll work with, and you've made your **first version-controlled file**.
+
+## Lessons in this tier
+
+1. [Install your toolkit and set up your accounts](install-and-accounts.qmd)
+2. [Meet the agent: working with AI, responsibly](meet-the-agent.qmd)
+3. [Your first versioned file: tracking a screening log](01-first-versioned-file.qmd)

@@ -1,0 +1,114 @@
+---
+title: "Install your toolkit and set up your accounts"
+description: "Get VS Code, R, git and Quarto installed and your GitHub account ready — once, so nothing blocks you later."
+tier: 0
+module: "0.1"
+estimated_time: "30–60 min"
+---
+
+## What you'll be able to do {#outcomes}
+
+By the end of this lesson you will have:
+
+- VS Code, git, R and Quarto installed on your computer.
+- A GitHub account.
+- Confirmed each one works, so the rest of the course runs smoothly.
+
+::: {.callout-note appearance="simple"}
+**Time:** ~30–60 min (one-off) · **You'll produce:** a working setup, checked with a few
+version commands.
+:::
+
+## Why this matters {#why}
+
+Every later lesson assumes these tools are ready. Doing the install once, carefully, now
+means you never get stuck on environment problems in the middle of real work. You don't
+need to understand the tools yet — just get them on your machine and confirm they run.
+
+## What you need {#prerequisites}
+
+- A computer you can install software on (administrator rights).
+- About an hour, and a stable internet connection.
+
+## Walkthrough {#walkthrough}
+
+Install these four, in order. Each links to the official download — accept the default
+options unless told otherwise.
+
+1. **VS Code** — your editor and home base. Download from
+   <https://code.visualstudio.com> and run the installer.
+   - On Windows, tick **"Add to PATH"** if offered.
+2. **git** — the version-control tool.
+   - **Windows:** install **Git for Windows** from <https://git-scm.com/download/win>
+     (accept defaults).
+   - **macOS:** open the **Terminal** app and run `xcode-select --install`, or get git
+     from <https://git-scm.com/download/mac>.
+3. **R** — the language several lessons use. Download from <https://cran.r-project.org>
+   and install the version for your operating system.
+4. **Quarto** — turns your `.qmd` files into documents and websites. Download from
+   <https://quarto.org/docs/get-started/> and run the installer.
+
+Then add two VS Code extensions (open VS Code, click the **Extensions** icon on the left,
+search, and click **Install**):
+
+- **Quarto** (by Posit) — preview and render documents.
+- **R** (by REditorSupport) — work with R files.
+
+::: {.callout-tip}
+You can also install the **GitHub Copilot** extension now if your organisation provides
+it — we'll use it later. It's optional for this lesson.
+:::
+
+Finally, create your **GitHub account** at <https://github.com> if you don't have one,
+using your work email.
+
+## Try it yourself {#try}
+
+Confirm everything installed correctly. In VS Code, open a terminal
+(**Terminal ▸ New Terminal**) and run these one at a time:
+
+```bash
+git --version
+quarto --version
+R --version
+```
+
+## Verify {#verify}
+
+Each command should print a **version number** (for example, `git version 2.45.1`), not
+an error like *"command not found"* or *"not recognised"*. If all three print versions,
+your toolkit is ready.
+
+If one fails, it's almost always because the program was installed but the terminal was
+opened *before* the install finished — **close and reopen VS Code**, then try again.
+
+## Common pitfalls {#pitfalls}
+
+- **"Command not found" right after installing.** Close and reopen VS Code (or restart
+  your computer) so it picks up the newly installed tools.
+- **No admin rights.** If an installer is blocked, ask your IT team to install VS Code,
+  git, R and Quarto for you — these are standard, safe tools.
+- **Windows vs macOS.** Use the correct download for your system; the steps are otherwise
+  the same.
+
+## Recap {#recap}
+
+You've installed the whole toolkit and confirmed it works. That one-off effort means the
+rest of the course can focus on the actual synthesis workflow, not on setup.
+
+## What's next {#next}
+
+Next you'll **meet the agent** — the AI assistant you'll work with throughout — and learn
+the one rule that keeps its help trustworthy.
+
+---
+
+::: {.callout-note collapse="true"}
+## Facilitator notes
+
+- The most common support issue is PATH/"command not found"; the fix is almost always to
+  reopen VS Code. Demonstrate it.
+- For locked-down machines, prepare an IT request in advance listing the four tools.
+- Have a fallback: anyone truly blocked can follow along in a browser-based environment
+  until their machine is sorted.
+:::

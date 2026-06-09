@@ -1,0 +1,139 @@
+---
+title: "Your first versioned file: tracking a screening log"
+description: "Make your first commits by putting a screening log under version control — no more emailed spreadsheets."
+tier: 0
+module: "0.4"
+estimated_time: "30–45 min"
+---
+
+## What you'll be able to do {#outcomes}
+
+By the end of this lesson you will be able to:
+
+- Keep your title/abstract screening decisions in a single, version-controlled file.
+- Make a **commit** — a saved, labelled snapshot — and then **revise** a decision and
+  commit again, leaving a clear history of who changed what, and when.
+- Push your work so it is backed up and shareable.
+
+::: {.callout-note appearance="simple"}
+**Time:** ~30–45 min · **You'll produce:** a versioned `screening-log.csv` with at least
+two commits, pushed to your own repository.
+:::
+
+## Why this matters {#why}
+
+You already screen studies. The problem is rarely the screening — it is the *file*.
+`screening_v3.xlsx`, then `screening_v3_FINAL.xlsx`, then `screening_v3_FINAL_really.xlsx`,
+emailed back and forth until nobody can say which decision was made when, or by whom.
+
+Version control fixes exactly this. You keep **one** file, and every time you change it
+you save a labelled snapshot. The history *is* the audit trail a journal, funder, or
+co-author would ask for — and you can always go back. Same screening work; reproducible.
+
+## What you need {#prerequisites}
+
+- VS Code, git, and a GitHub account (from the earlier setup steps).
+- Your own copy of the exercise repository — you'll get this from the **Screening-log**
+  assignment in Google Classroom (click the link, and GitHub makes you your own repo).
+
+## Walkthrough {#walkthrough}
+
+We'll use VS Code's built-in **Source Control** panel — buttons, not the terminal.
+
+1. **Open your exercise repository in VS Code.** `File ▸ Open Folder…` and choose the
+   folder you cloned from the assignment. You should see the project files on the left.
+2. **Create the screening log.** Make a new file at the top level called
+   `screening-log.csv` and give it these column headings on the first line:
+
+   ```text
+   study_id,title,decision,reason,screened_by,date
+   ```
+
+3. **Add at least three studies**, one per line. Each `decision` is `include` or
+   `exclude`, with a short `reason`. For example:
+
+   ```text
+   S001,Cash transfers and school enrolment,include,RCT meeting our PICO,LS,2026-06-09
+   S002,Opinion piece on education funding,exclude,Not an impact evaluation,LS,2026-06-09
+   S003,Transfers and child labour: a quasi-experiment,include,Eligible design,LS,2026-06-09
+   ```
+
+4. **Make your first commit.** Open the **Source Control** panel (the branch icon on the
+   left, or `Ctrl/Cmd + Shift + G`). You'll see `screening-log.csv` listed under *Changes*.
+   Type a message like `Add initial screening decisions` in the box and click
+   **✓ Commit**. (If prompted to stage, click **Yes** / the **+** next to the file first.)
+
+   > You have just saved a labelled snapshot. That is a commit.
+
+5. **Revise a decision.** Re-reading an abstract, you change your mind: edit one row from
+   `exclude` to `include` (or vice versa) and update its `reason`. Save the file.
+6. **Commit again** with a message that says what changed, e.g.
+   `Revise decision for S002 after re-reading`.
+7. **Push your work.** Click **Sync Changes** (or the `…` menu ▸ *Push*) to send your
+   commits to GitHub. Sign in if asked.
+
+### Working with the agent {#agent}
+
+You can ask Claude Code (in the VS Code terminal) or Copilot to help — for example,
+*"add three more screening rows to screening-log.csv in the same format."* That is fine,
+**but always read what it produced and check it** before you commit: open the file and
+confirm the columns and decisions are right. The rule for the whole course: the agent
+drafts, *you* verify. Never commit something you haven't read.
+
+## Try it yourself {#try}
+
+Complete the **Screening-log** assignment in Google Classroom.
+
+> **Your task:** create `screening-log.csv` with the six columns and at least three
+> `include`/`exclude` decisions, commit it, then revise one decision and commit again,
+> and push.
+>
+> **Done when:** the file has the required columns and ≥3 rows, and there are **at least
+> two commits** to it.
+
+## Verify {#verify}
+
+Don't just trust that it worked — confirm the history exists. In the VS Code terminal,
+run:
+
+```bash
+git log --oneline -- screening-log.csv
+```
+
+You should see **at least two** commits (your initial decisions, then your revision).
+That history is the proof of *how* your screening evolved. In Classroom, the assignment's
+automatic check also turns green when your file and history are in order.
+
+## Common pitfalls {#pitfalls}
+
+- **Wrong file name or place.** It must be `screening-log.csv` at the top level of the
+  repository — not inside a sub-folder, not `.xlsx`.
+- **Capitalised decisions.** Use lower case: `include` / `exclude`.
+- **One big commit.** The point is a *revision*, so commit your initial decisions first,
+  then commit the change separately — that's what creates the history.
+- **Forgetting to push.** Commits live on your computer until you **Sync/Push** them.
+
+## Recap {#recap}
+
+You put a real synthesis artefact — your screening decisions — under version control,
+made two commits, and pushed them. You now have a tracked, recoverable history instead of
+a pile of emailed spreadsheets. That same habit carries through every later stage of the
+review.
+
+## What's next {#next}
+
+Next we set up the rest of your toolkit and meet the agent properly, before moving into
+Tier 1, where version control and reproducible documents become second nature.
+
+---
+
+::: {.callout-note collapse="true"}
+## Facilitator notes
+
+- Expect the **commit vs push** distinction to be the main sticking point — show the
+  Source Control panel live and point out that committed work is still only local until
+  pushed.
+- Watch for `.xlsx` habits: some will try to make a spreadsheet. Reinforce that plain
+  CSV is what makes the history readable.
+- Good moment to pair learners for a quick peer check of each other's commit history.
+:::

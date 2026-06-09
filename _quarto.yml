@@ -34,6 +34,9 @@ website:
       - section: "Tier 0 — Orientation & setup"
         contents:
           - tiers/tier0/index.qmd
+          - tiers/tier0/install-and-accounts.qmd
+          - tiers/tier0/meet-the-agent.qmd
+          - tiers/tier0/01-first-versioned-file.qmd
       - section: "Tier 1 — Foundations"
         contents:
           - tiers/tier1/index.qmd

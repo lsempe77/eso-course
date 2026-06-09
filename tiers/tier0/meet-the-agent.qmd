@@ -1,0 +1,117 @@
+---
+title: "Meet the agent: working with AI, responsibly"
+description: "Get to know your AI assistant, try it on a small synthesis task, and learn the one rule that keeps its help trustworthy."
+tier: 0
+module: "0.2"
+estimated_time: "30–45 min"
+---
+
+## What you'll be able to do {#outcomes}
+
+By the end of this lesson you will be able to:
+
+- Recognise the three ways you'll use AI in this course, and which to reach for.
+- Ask an AI assistant for help on a synthesis task and **check its answer**.
+- State and apply the rules that keep AI use responsible (verify everything; published
+  data only).
+
+::: {.callout-note appearance="simple"}
+**Time:** ~30–45 min · **You'll produce:** a short note recording one thing the agent
+helped with and how you verified it.
+:::
+
+## Why this matters {#why}
+
+You'll work *with* an AI assistant from day one of this course — it can draft, explain,
+and take busywork off your hands. But an assistant that is never checked quietly destroys
+the very thing we care about: a trustworthy, reproducible review. So we learn to use it
+*and* to verify it, from the start. This reflects the **RAISE** position that the
+synthesist is always responsible, and every AI-suggested judgement is checked and recorded.
+
+## The three surfaces {#surfaces}
+
+You'll meet AI in three forms. Knowing which to reach for is the real skill:
+
+1. **Chat advisor** — a chat window in your browser (e.g. Claude). It explains, drafts,
+   and debugs, but can't see your files. Best for *learning and getting unstuck*.
+2. **In-editor assistant** — GitHub Copilot inside VS Code. It sees the file you're
+   working on and suggests as you type. Best for *working as you go*.
+3. **Agent** — a tool (Claude Code) that runs in VS Code's terminal, can read and write
+   your files and run steps for you. The most powerful, and the one we lean on most — used
+   carefully.
+
+We start with the chat advisor, because it needs no setup and is the safest way in.
+
+## What you need {#prerequisites}
+
+- VS Code installed (previous lesson).
+- Access to an AI chat assistant in your browser (e.g. Claude at <https://claude.ai>).
+
+## Walkthrough {#walkthrough}
+
+1. **Open the chat advisor** in your browser and sign in.
+2. **Ask it something useful for synthesis.** Try a real, low-stakes question, for example:
+
+   > "I'm keeping screening decisions in a CSV file with columns study_id, title,
+   > decision, reason, screened_by, date. Suggest three example rows for a review of cash
+   > transfers and school enrolment."
+
+3. **Read the answer critically.** Does it use the right columns? Are the decisions
+   sensible? This habit — reading, not just accepting — is the whole point.
+4. **(Optional) See the in-editor assistant.** If you installed GitHub Copilot, open a
+   file in VS Code and start typing a comment like `# screening columns:` to watch it
+   suggest. You can accept or ignore its suggestions.
+
+::: {.callout-important}
+**Two rules, always:**
+
+- **Verify everything.** The agent drafts; *you* confirm it against a source or your own
+  knowledge before you use or commit it. Never present AI output as trustworthy unchecked.
+- **Published data only.** Only put public or already-published material into external AI
+  tools — never confidential or unpublished data.
+:::
+
+## Try it yourself {#try}
+
+Ask the assistant for help with one small, real task (drafting example screening rows,
+explaining what a "commit" is, or rephrasing a sentence). Then write **2–3 sentences** in
+a file called `agent-note.md`: what you asked, and *how you checked* the answer.
+
+> **Done when:** you have an `agent-note.md` recording one use of the agent and your
+> verification step.
+
+## Verify {#verify}
+
+Re-read your note. Could a colleague see *what* the AI did and *how you confirmed it*?
+That short record is exactly the kind of documentation RAISE asks for — making AI use in a
+review transparent rather than hidden.
+
+## Common pitfalls {#pitfalls}
+
+- **Trusting a confident answer.** Fluent does not mean correct — AI can invent facts and
+  citations. Always check.
+- **Pasting sensitive data.** When in doubt, leave it out; use only published material.
+- **Over-relying.** Use the agent to go faster on things you can judge — not to make
+  judgements you can't check.
+
+## Recap {#recap}
+
+You've met the three AI surfaces, used the chat advisor on a synthesis task, and practised
+the core discipline: verify everything, published data only, and record what the AI did.
+That discipline carries through every lesson from here.
+
+## What's next {#next}
+
+Now you'll put it together and make your **first version-controlled file** — your first
+commit.
+
+---
+
+::: {.callout-note collapse="true"}
+## Facilitator notes
+
+- Emphasise that "the agent drafts, you verify" is non-negotiable and recurs all course.
+- A powerful demo: ask the assistant for a real-looking citation, then show that it can be
+  fabricated — motivating the later citation-integrity work.
+- Reassure non-coders: starting in the browser chat means there's nothing to break.
+:::
