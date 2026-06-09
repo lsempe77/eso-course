@@ -32,20 +32,17 @@ website:
       - text: "Home"
         href: index.qmd
       - section: "Tier 0 — Orientation & setup"
+        href: tiers/tier0/index.qmd
         contents:
-          - tiers/tier0/index.qmd
           - tiers/tier0/install-and-accounts.qmd
           - tiers/tier0/meet-the-agent.qmd
           - tiers/tier0/01-first-versioned-file.qmd
-      - section: "Tier 1 — Foundations"
-        contents:
-          - tiers/tier1/index.qmd
-      - section: "Tier 2 — Synthesis lifecycle"
-        contents:
-          - tiers/tier2/index.qmd
-      - section: "Tier 3 — Advanced"
-        contents:
-          - tiers/tier3/index.qmd
+      - href: tiers/tier1/index.qmd
+        text: "Tier 1 — Foundations"
+      - href: tiers/tier2/index.qmd
+        text: "Tier 2 — Synthesis lifecycle"
+      - href: tiers/tier3/index.qmd
+        text: "Tier 3 — Advanced"
   page-footer:
     left: "3ie Evidence Synthesis Office"
     right: "Built with Quarto · access restricted to 3ie"
